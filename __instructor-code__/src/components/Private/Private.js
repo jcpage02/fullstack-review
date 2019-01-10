@@ -3,6 +3,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { getUserData } from './../../ducks/user';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 class Private extends Component {
   async componentDidMount() {
@@ -12,6 +13,20 @@ class Private extends Component {
       this.props.getUserData(res.data);
     } catch (e) {
       console.log('Error: not logged in', e)
+      Swal({
+        title: 'Oops...',
+        text: "You aren't logge din!",
+        type: 'error',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Login!'
+      }).then((result) => {
+        console.log(result)
+        if (result.value) {
+          this.props.history.push('/')
+        }
+      })
     }
   }
 

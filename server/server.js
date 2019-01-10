@@ -21,7 +21,7 @@ app.post('/auth/login', authCtrl.login)
 app.get('/api/user-data', authCtrl.userData)
 app.get('/auth/logout', (req, res) => {
     req.session.destroy()
-    res.redirect('http://localhost:4000/#/')
+    res.redirect('http://localhost:3000/#/')
 })
 
 
